@@ -1,0 +1,230 @@
+<?xml version="1.0" ?>
+<!-- Generated using onshape-to-robot -->
+<!-- Onshape document_id: 4875ec4cbd861bf59dacc3de -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Link base footprint-->
+    <link name="base_footprint" />
+
+    <!-- Joint base footprint -->
+    <joint name="base_joint" type="fixed">
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+        <origin xyz="0.0 0.0 0.1" rpy="0.0 0.0 0.0"/>
+    </joint>
+
+    <!-- Link base -->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.00173747 1.94352e-06 -0.0301107" rpy="0 0 0"/>
+      <mass value="5.99226"/>
+      <inertia ixx="0.0320319" ixy="-4.38482e-07" ixz="2.87354e-05" iyy="0.0561975" iyz="9.11259e-08" izz="0.0817942"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.00160544 -6.245e-17 -0.0709025" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://my_robot_description/assets/base.stl"/>
+      </geometry>
+      <material name="base_material">
+        <color rgba="0.8 0.8 0.8 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.00160544 -6.245e-17 -0.0709025" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://my_robot_description/assets/base.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Link hub -->
+  <link name="hub_link">
+    <inertial>
+      <origin xyz="1.29274e-18 -4.20141e-18 -0.02" rpy="0 0 0"/>
+      <mass value="1.05962"/>
+      <inertia ixx="0.000713534" ixy="0" ixz="0" iyy="0.000713534" iyz="0" izz="0.00124537"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 -0.02" rpy="1.5708 -0 0"/>
+      <geometry>
+        <mesh filename="package://my_robot_description/assets/hub.stl"/>
+      </geometry>
+      <material name="hub_material">
+        <color rgba="0.647059 0.647059 0.647059 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.02" rpy="1.5708 -0 0"/>
+      <geometry>
+        <mesh filename="package://my_robot_description/assets/hub.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Link rubber_tire -->
+  <link name="rubber_tire_link">
+    <inertial>
+      <origin xyz="-1.52248e-50 -3.07598e-18 -6.74047e-18" rpy="0 0 0"/>
+      <mass value="0.41469"/>
+      <inertia ixx="0.000853571" ixy="0" ixz="0" iyy="0.000853571" iyz="0" izz="0.00153435"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 -1.04083e-17 0" rpy="-1.5708 -0 0"/>
+      <geometry>
+        <mesh filename="package://my_robot_description/assets/rubber_tire.stl"/>
+      </geometry>
+      <material name="rubber_tire_material">
+        <color rgba="0.917647 0.917647 0.917647 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 -1.04083e-17 0" rpy="-1.5708 -0 0"/>
+      <geometry>
+        <mesh filename="package://my_robot_description/assets/rubber_tire.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint from hub to rubber_tire -->
+  <joint name="left_assembly_joint" type="fixed">
+    <origin xyz="0 -3.46945e-18 -0.02" rpy="3.14159 -0 0"/>
+    <parent link="hub_link"/>
+    <child link="rubber_tire_link"/>
+  </joint>
+
+  <!-- Joint from base to hub -->
+  <joint name="left_wheel_base_joint" type="continuous">
+    <origin xyz="0.00160544 -0.115 -0.0309025" rpy="-1.5708 -0 0"/>
+    <parent link="base_link"/>
+    <child link="hub_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="100" velocity="100" />
+  </joint>
+
+  <!-- Link hub_2 -->
+  <link name="hub_2_link">
+    <inertial>
+      <origin xyz="1.29274e-18 4.20141e-18 -0.02" rpy="0 0 0"/>
+      <mass value="1.05962"/>
+      <inertia ixx="0.000713534" ixy="0" ixz="0" iyy="0.000713534" iyz="0" izz="0.00124537"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 -0.02" rpy="-1.5708 -0 0"/>
+      <geometry>
+        <mesh filename="package://my_robot_description/assets/hub.stl"/>
+      </geometry>
+      <material name="hub_2_material">
+        <color rgba="0.647059 0.647059 0.647059 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.02" rpy="-1.5708 -0 0"/>
+      <geometry>
+        <mesh filename="package://my_robot_description/assets/hub.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Link rubber_tire_2 -->
+  <link name="rubber_tire_2_link">
+    <inertial>
+      <origin xyz="1.23149e-33 -3.07598e-18 -6.74047e-18" rpy="0 0 0"/>
+      <mass value="0.41469"/>
+      <inertia ixx="0.000853571" ixy="0" ixz="-1.2438e-19" iyy="0.000853571" iyz="0" izz="0.00153435"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 -1.04083e-17 0" rpy="-1.5708 -1.82701e-16 0"/>
+      <geometry>
+        <mesh filename="package://my_robot_description/assets/rubber_tire.stl"/>
+      </geometry>
+      <material name="rubber_tire_2_material">
+        <color rgba="0.917647 0.917647 0.917647 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 -1.04083e-17 0" rpy="-1.5708 -1.82701e-16 0"/>
+      <geometry>
+        <mesh filename="package://my_robot_description/assets/rubber_tire.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint from hub_2 to rubber_tire_2 -->
+  <joint name="right_assembly_joint" type="fixed">
+    <origin xyz="0 3.46945e-18 -0.02" rpy="0 -0 0"/>
+    <parent link="hub_2_link"/>
+    <child link="rubber_tire_2_link"/>
+  </joint>
+
+  <!-- Joint from base to hub_2 -->
+  <joint name="right_wheel_base_joint" type="continuous">
+    <origin xyz="0.00160544 0.115 -0.0309025" rpy="1.5708 -0 1.82701e-16"/>
+    <parent link="base_link"/>
+    <child link="hub_2_link"/>
+    <axis xyz="0 0 -1"/>
+    <limit effort="100" velocity="100"/>
+  </joint>
+
+  <!-- Link caster_wheel -->
+  <link name="caster_wheel_link">
+    <inertial>
+      <origin xyz="0 0 -2.52583e-18" rpy="0 0 0"/>
+      <mass value="0.124407"/>
+      <inertia ixx="4.47865e-05" ixy="0" ixz="0" iyy="4.47865e-05" iyz="0" izz="4.47865e-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://my_robot_description/assets/caster_wheel.stl"/>
+      </geometry>
+      <material name="caster_wheel_material">
+        <color rgba="0.713725 0.760784 0.8 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://my_robot_description/assets/caster_wheel.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Joint from base to caster_wheel -->
+  <joint name="front_caster_wheel_base_joint" type="fixed">
+    <origin xyz="0.133105 -6.31542e-17 -0.0709025" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="caster_wheel_link"/>
+  </joint>
+
+  <!-- Link caster_wheel_2 -->
+  <link name="caster_wheel_2_link">
+    <inertial>
+      <origin xyz="0 0 -2.52583e-18" rpy="0 0 0"/>
+      <mass value="0.124407"/>
+      <inertia ixx="4.47865e-05" ixy="0" ixz="0" iyy="4.47865e-05" iyz="0" izz="4.47865e-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://my_robot_description/assets/caster_wheel.stl"/>
+      </geometry>
+      <material name="caster_wheel_2_material">
+        <color rgba="0.713725 0.760784 0.8 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://my_robot_description/assets/caster_wheel.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+   <!-- Joint from base to caster_wheel_2 -->
+  <joint name="back_caster_wheel_base_joint" type="fixed">
+    <origin xyz="-0.129895 -6.245e-17 -0.0709025" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="caster_wheel_2_link"/>
+  </joint> 
+
+</robot>
